@@ -1,5 +1,7 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,6 +16,16 @@ public class HamletParser {
     public HamletParser(){
         this.hamletData = loadFile();
     }
+    public static void main(String[] args){
+        HamletParser parse = new HamletParser();
+
+        String leonChange = parse.changeHamletToLeon();
+        saveToFile(leonChange);
+        String tariqChange = parse.changeHoratioToTariq();
+        saveToFile(tariqChange);
+    }
+
+
 
     private String loadFile(){
         ClassLoader classLoader = getClass().getClassLoader();
@@ -70,4 +82,15 @@ public class HamletParser {
     public boolean findHamlet() {
         return false;
     }
+
+    public static void saveToFile(String line) {
+        try {
+            PrintWriter fileOut = new PrintWriter("src/main/resources/hamletChange.txt");
+            fileOut.println(line);
+            fileOut.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
