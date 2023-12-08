@@ -40,11 +40,27 @@ public class HamletParser {
 
 
     public String changeHamletToLeon() {
-        return "";
+        Pattern pattern = Pattern.compile("Hamlet", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(hamletData);
+        boolean match = matcher.find();
+        String Leon = hamletData;
+
+        if(match) {
+            Leon = matcher.replaceAll("Leon");
+        }
+        return Leon;
     }
 
     public String changeHoratioToTariq() {
-        return "";
+        Pattern pattern = Pattern.compile("Horatio", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(hamletData);
+        boolean match = matcher.find();
+        String Tariq = hamletData;
+
+        if(match) {
+            Tariq = matcher.replaceAll("Tariq");
+        }
+        return Tariq;
     }
 
     public boolean findHoratio() {
